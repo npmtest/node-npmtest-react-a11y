@@ -1,0 +1,854 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for node-npmtest-react-a11y/node_modules/react-a11y/dist/assertions.js</title>
+    <meta charset="utf-8">
+    <style>
+        body, html {
+            margin:0; padding: 0;
+        }
+        body {
+            font-family: Arial, Helvetica;
+            font-size: 10pt;
+        }
+        div.header, div.footer {
+            background: #eee;
+            padding: 1em;
+        }
+        div.header {
+            height: 160px;
+            padding: 0 1em 0 1em;
+            z-index: 100;
+            position: fixed;
+            top: 0;
+            border-bottom: 1px solid #666;
+            width: 100%;
+        }
+        div.footer {
+            border-top: 1px solid #666;
+        }
+        div.body {
+            margin-top: 170px;
+        }
+        div.meta {
+            font-size: 90%;
+            text-align: center;
+        }
+        h1, h2, h3 {
+            font-weight: normal;
+        }
+        h1 {
+            font-size: 12pt;
+        }
+        h2 {
+            font-size: 10pt;
+        }
+        pre {
+            font-family: Menlo, Monaco, Consolas, Courier New, monospace;
+            margin: 0;
+            padding: 0;
+            font-size: 14px;
+            tab-size: 2;
+        }
+
+        div.path { font-size: 110%; }
+        div.path a:link, div.path a:visited { color: #000; }
+        table.coverage { border-collapse: collapse; margin:0; padding: 0 }
+
+        table.coverage td {
+            margin: 0;
+            padding: 0;
+            color: #111;
+            vertical-align: top;
+        }
+        table.coverage td.line-count {
+            width: 50px;
+            text-align: right;
+            padding-right: 5px;
+        }
+        table.coverage td.line-coverage {
+            color: #777 !important;
+            text-align: right;
+            border-left: 1px solid #666;
+            border-right: 1px solid #666;
+        }
+
+        table.coverage td.text {
+        }
+
+        table.coverage td span.cline-any {
+            display: inline-block;
+            padding: 0 5px;
+            width: 40px;
+        }
+        table.coverage td span.cline-neutral {
+            background: #eee;
+        }
+        table.coverage td span.cline-yes {
+            background: #b5d592;
+            color: #999;
+        }
+        table.coverage td span.cline-no {
+            background: #fc8c84;
+        }
+
+        .cstat-yes { color: #111; }
+        .cstat-no { background: #fc8c84; color: #111; }
+        .fstat-no { background: #ffc520; color: #111 !important; }
+        .cbranch-no { background:  yellow !important; color: #111; }
+
+        .cstat-skip { background: #ddd; color: #111; }
+        .fstat-skip { background: #ddd; color: #111 !important; }
+        .cbranch-skip { background: #ddd !important; color: #111; }
+
+        .missing-if-branch {
+            display: inline-block;
+            margin-right: 10px;
+            position: relative;
+            padding: 0 4px;
+            background: black;
+            color: yellow;
+        }
+
+        .skip-if-branch {
+            display: none;
+            margin-right: 10px;
+            position: relative;
+            padding: 0 4px;
+            background: #ccc;
+            color: white;
+        }
+
+        .missing-if-branch .typ, .skip-if-branch .typ {
+            color: inherit !important;
+        }
+
+        .entity, .metric { font-weight: bold; }
+        .metric { display: inline-block; border: 1px solid #333; padding: 0.3em; background: white; }
+        .metric small { font-size: 80%; font-weight: normal; color: #666; }
+
+        div.coverage-summary table { border-collapse: collapse; margin: 3em; font-size: 110%; }
+        div.coverage-summary td, div.coverage-summary table  th { margin: 0; padding: 0.25em 1em; border-top: 1px solid #666; border-bottom: 1px solid #666; }
+        div.coverage-summary th { text-align: left; border: 1px solid #666; background: #eee; font-weight: normal; }
+        div.coverage-summary th.file { border-right: none !important; }
+        div.coverage-summary th.pic { border-left: none !important; text-align: right; }
+        div.coverage-summary th.pct { border-right: none !important; }
+        div.coverage-summary th.abs { border-left: none !important; text-align: right; }
+        div.coverage-summary td.pct { text-align: right; border-left: 1px solid #666; }
+        div.coverage-summary td.abs { text-align: right; font-size: 90%; color: #444; border-right: 1px solid #666; }
+        div.coverage-summary td.file { text-align: right; border-left: 1px solid #666; white-space: nowrap;  }
+        div.coverage-summary td.pic { min-width: 120px !important;  }
+        div.coverage-summary a:link { color: #000; }
+        div.coverage-summary a:visited { color: #333; }
+        div.coverage-summary tfoot td { border-top: 1px solid #666; }
+
+        div.coverage-summary .yui3-datatable-sort-indicator, div.coverage-summary .dummy-sort-indicator {
+            height: 10px;
+            width: 7px;
+            display: inline-block;
+            margin-left: 0.5em;
+        }
+        div.coverage-summary .yui3-datatable-sort-indicator {
+            background: no-repeat scroll 0 0 transparent;
+        }
+        div.coverage-summary .yui3-datatable-sorted .yui3-datatable-sort-indicator {
+            background-position: 0 -20px;
+        }
+        div.coverage-summary .yui3-datatable-sorted-desc .yui3-datatable-sort-indicator {
+            background-position: 0 -10px;
+        }
+
+        .high { background: #b5d592 !important; }
+        .medium { background: #ffe87c !important; }
+        .low { background: #fc8c84 !important; }
+
+        span.cover-fill, span.cover-empty {
+            display:inline-block;
+            border:1px solid #444;
+            background: white;
+            height: 12px;
+        }
+        span.cover-fill {
+            background: #ccc;
+            border-right: 1px solid #444;
+        }
+        span.cover-empty {
+            background: white;
+            border-left: none;
+        }
+        span.cover-full {
+            border-right: none !important;
+        }
+        pre.prettyprint {
+            border: none !important;
+            padding: 0 !important;
+            margin: 0 !important;
+        }
+        .com { color: #999 !important; }
+        .ignore-none { color: #999; font-weight: normal; }
+
+    </style>
+</head>
+<body>
+<div class="header low">
+    <h1 style="font-weight: bold;">
+        <a href="https://github.com/npmtest/node-npmtest-react-a11y">npmtest-react-a11y (v0.0.1)</a>
+    </h1>
+    <h1>Code coverage report for <span class="entity">node-npmtest-react-a11y/node_modules/react-a11y/dist/assertions.js</span></h1>
+    <h2>
+        
+        Statements: <span class="metric">16.67% <small>(17 / 102)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        
+        Branches: <span class="metric">0% <small>(0 / 98)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        
+        Functions: <span class="metric">0% <small>(0 / 24)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        
+        Lines: <span class="metric">22.67% <small>(17 / 75)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
+    </h2>
+    <div class="path"><a href="../../../../index.html">All files</a> &#187; <a href="index.html">node-npmtest-react-a11y/node_modules/react-a11y/dist/</a> &#187; assertions.js</div>
+</div>
+<div class="body">
+<pre><table class="coverage">
+<tr><td class="line-count">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211</td><td class="line-coverage"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">'use strict';
+&nbsp;
+var after = require('./after');
+&nbsp;
+var React;
+var ReactDOM;
+&nbsp;
+exports.setReact = <span class="fstat-no" title="function not covered" >function (_React, _ReactDOM) {</span>
+<span class="cstat-no" title="statement not covered" >  React = _React;</span>
+<span class="cstat-no" title="statement not covered" >  ReactDOM = _ReactDOM || React;</span>
+};
+&nbsp;
+var INTERACTIVE = {
+  'button': true,
+  'input': <span class="fstat-no" title="function not covered" >function input(props) {</span>
+<span class="cstat-no" title="statement not covered" >    return props.type != 'hidden';</span>
+  },
+  'textarea': true,
+  'select': true,
+  'option': true,
+  'a': <span class="fstat-no" title="function not covered" >function a(props) {</span>
+<span class="cstat-no" title="statement not covered" >    var hasHref = typeof props.href === 'string';</span>
+<span class="cstat-no" title="statement not covered" >    var hasTabIndex = props.tabIndex != null;</span>
+<span class="cstat-no" title="statement not covered" >    return hasHref || !hasHref &amp;&amp; hasTabIndex;</span>
+  }
+};
+&nbsp;
+var presentationRoles = ['presentation', 'none'];
+&nbsp;
+var isHiddenFromAT = <span class="fstat-no" title="function not covered" >function isHiddenFromAT(props) {</span>
+<span class="cstat-no" title="statement not covered" >  return props['aria-hidden'] == 'true';</span>
+};
+&nbsp;
+var hasAlt = <span class="fstat-no" title="function not covered" >function hasAlt(props) {</span>
+<span class="cstat-no" title="statement not covered" >  return typeof props.alt === 'string';</span>
+};
+&nbsp;
+var isInteractive = <span class="fstat-no" title="function not covered" >function isInteractive(tagName, props) {</span>
+<span class="cstat-no" title="statement not covered" >  var tag = INTERACTIVE[tagName];</span>
+<span class="cstat-no" title="statement not covered" >  return typeof tag === 'function' ? tag(props) : tag;</span>
+};
+&nbsp;
+var getComponents = <span class="fstat-no" title="function not covered" >function getComponents(children) {</span>
+<span class="cstat-no" title="statement not covered" >  var childComponents = [];</span>
+<span class="cstat-no" title="statement not covered" >  React.Children.forEach(children, <span class="fstat-no" title="function not covered" >function (child) {</span></span>
+<span class="cstat-no" title="statement not covered" >    if (child &amp;&amp; typeof child.type === 'function') <span class="cstat-no" title="statement not covered" >childComponents.push(child);</span></span>
+  });
+<span class="cstat-no" title="statement not covered" >  return childComponents;</span>
+};
+&nbsp;
+var hasLabel = <span class="fstat-no" title="function not covered" >function hasLabel(node) {</span>
+<span class="cstat-no" title="statement not covered" >  var text = node.tagName.toLowerCase() == 'img' ? node.alt : node.textContent;</span>
+<span class="cstat-no" title="statement not covered" >  var hasTextContent = text.trim().length &gt; 0;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  var images = node.querySelectorAll('img[alt]');</span>
+<span class="cstat-no" title="statement not covered" >  images = Array.prototype.slice.call(images);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  var hasAltText = images.filter(<span class="fstat-no" title="function not covered" >function (image) {</span></span>
+<span class="cstat-no" title="statement not covered" >    return image.alt.length &gt; 0;</span>
+  }).length &gt; 0;
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  return hasTextContent || hasAltText;</span>
+};
+&nbsp;
+var assertLabel = <span class="fstat-no" title="function not covered" >function assertLabel(node, context, failureCB) {</span>
+<span class="cstat-no" title="statement not covered" >  if (context.passed) <span class="cstat-no" title="statement not covered" >return;</span></span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  context.passed = hasLabel(node);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  if (!context.passed &amp;&amp; context.totalChildren == ++context.childrenTested) <span class="cstat-no" title="statement not covered" >failureCB();</span></span>
+};
+&nbsp;
+var hasChildTextNode = <span class="fstat-no" title="function not covered" >function hasChildTextNode(props, children, failureCB) {</span>
+<span class="cstat-no" title="statement not covered" >  var hasText = false;</span>
+<span class="cstat-no" title="statement not covered" >  var childComponents = getComponents(children);</span>
+<span class="cstat-no" title="statement not covered" >  var nChildComponents = childComponents.length;</span>
+<span class="cstat-no" title="statement not covered" >  var hasChildComponents = nChildComponents &gt; 0;</span>
+<span class="cstat-no" title="statement not covered" >  var nCurrentComponent = 0;</span>
+<span class="cstat-no" title="statement not covered" >  var context;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  if (hasChildComponents) <span class="cstat-no" title="statement not covered" >context = { totalChildren: childComponents.length, childrenTested: 0 };</span></span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  React.Children.forEach(children, <span class="fstat-no" title="function not covered" >function (child) {</span></span>
+<span class="cstat-no" title="statement not covered" >    if (hasText) <span class="cstat-no" title="statement not covered" >return;e</span>lse <span class="cstat-no" title="statement not covered" >if (child === null) <span class="cstat-no" title="statement not covered" >return;e</span>lse <span class="cstat-no" title="statement not covered" >if (typeof child === 'undefined') <span class="cstat-no" title="statement not covered" >return;e</span>lse <span class="cstat-no" title="statement not covered" >if (typeof child === 'string' || typeof child === 'number') <span class="cstat-no" title="statement not covered" >hasText = true;e</span>lse <span class="cstat-no" title="statement not covered" >if (child.type === 'img' &amp;&amp; child.props.alt) <span class="cstat-no" title="statement not covered" >hasText = true;e</span>lse <span class="cstat-no" title="statement not covered" >if (child.props &amp;&amp; child.props.children) <span class="cstat-no" title="statement not covered" >hasText = hasChildTextNode(child.props, child.props.children, failureCB);e</span>lse <span class="cstat-no" title="statement not covered" >if (typeof child.type === 'function') {</span></span></span></span></span></span></span>
+      // There can be false negatives if one of the children is a Component,
+      // as Components' children are inaccessible until it's is rendered.
+      // To account for this, check each Component's HTML after it's
+      // been mounted.
+<span class="cstat-no" title="statement not covered" >      after(child.type.prototype, 'componentDidMount', <span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >        assertLabel(ReactDOM.findDOMNode(this), context, failureCB);</span>
+      });
+&nbsp;
+      // Return true because the label check is now going to be async
+      // (due to the componentDidMount listener) and we want to avoid
+      // pre-maturely calling the failure callback.
+<span class="cstat-no" title="statement not covered" >      hasText = nChildComponents == ++nCurrentComponent;</span>
+    }
+  });
+<span class="cstat-no" title="statement not covered" >  return hasText;</span>
+};
+&nbsp;
+exports.mobileExclusions = ['NO_TABINDEX', 'BUTTON_ROLE_SPACE', 'BUTTON_ROLE_ENTER', 'TABINDEX_REQUIRED_WHEN_ARIA_HIDDEN'];
+&nbsp;
+exports.props = {
+  onClick: {
+    NO_ROLE: {
+      msg: 'You have a click handler on a non-interactive element but no `role` DOM property. It will be unclear what this element is supposed to do to a screen-reader user. http://www.w3.org/TR/wai-aria/roles#role_definitions',
+      test: <span class="fstat-no" title="function not covered" >function test(tagName, props, children) {</span>
+<span class="cstat-no" title="statement not covered" >        if (isHiddenFromAT(props)) <span class="cstat-no" title="statement not covered" >return true;</span></span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        return !(!isInteractive(tagName, props) &amp;&amp; !props.role);</span>
+      }
+    },
+&nbsp;
+    NO_TABINDEX: {
+      msg: 'You have a click handler on a non-interactive element but no `tabIndex` DOM property. The element will not be navigable or interactive by keyboard users. http://www.w3.org/TR/wai-aria-practices/#focus_tabindex',
+      test: <span class="fstat-no" title="function not covered" >function test(tagName, props, children) {</span>
+<span class="cstat-no" title="statement not covered" >        if (isHiddenFromAT(props)) <span class="cstat-no" title="statement not covered" >return true;</span></span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        return !(!isInteractive(tagName, props) &amp;&amp; props.tabIndex == null) // tabIndex={0} is valid</span>
+        ;
+      }
+    },
+&nbsp;
+    BUTTON_ROLE_SPACE: {
+      msg: 'You have `role="button"` but did not define an `onKeyDown` handler. Add it, and have the "Space" key do the same thing as an `onClick` handler.',
+      test: <span class="fstat-no" title="function not covered" >function test(tagName, props, children) {</span>
+<span class="cstat-no" title="statement not covered" >        if (isHiddenFromAT(props)) <span class="cstat-no" title="statement not covered" >return true;</span></span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        return !(props.role === 'button' &amp;&amp; !props.onKeyDown);</span>
+      }
+    },
+&nbsp;
+    BUTTON_ROLE_ENTER: {
+      msg: 'You have `role="button"` but did not define an `onKeyDown` handler. Add it, and have the "Enter" key do the same thing as an `onClick` handler.',
+      test: <span class="fstat-no" title="function not covered" >function test(tagName, props, children) {</span>
+<span class="cstat-no" title="statement not covered" >        if (isHiddenFromAT(props)) <span class="cstat-no" title="statement not covered" >return true;</span></span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        return !(props.role === 'button' &amp;&amp; !props.onKeyDown);</span>
+      }
+    }
+  },
+&nbsp;
+  'aria-hidden': {
+    'TABINDEX_REQUIRED_WHEN_ARIA_HIDDEN': {
+      msg: 'You have `aria-hidden="true"` applied to an interactive element but have not removed it from the tab flow. This could result in a hidden tab stop for users of screen readers.',
+      test: <span class="fstat-no" title="function not covered" >function test(tagName, props, children) {</span>
+<span class="cstat-no" title="statement not covered" >        return !((isInteractive(tagName, props) || tagName == 'a' &amp;&amp; !props.href) &amp;&amp; props['aria-hidden'] == 'true' &amp;&amp; props.tabIndex != '-1');</span>
+      }
+    }
+  }
+};
+&nbsp;
+exports.tags = {
+  a: {
+    HASH_HREF_NEEDS_BUTTON: {
+      msg: 'You have an anchor with `href="#"` and no `role` DOM property. Add `role="button"` or better yet, use a `&lt;button/&gt;`.',
+      test: <span class="fstat-no" title="function not covered" >function test(tagName, props, children) {</span>
+<span class="cstat-no" title="statement not covered" >        if (isHiddenFromAT(props)) <span class="cstat-no" title="statement not covered" >return true;</span></span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        return !(!props.role &amp;&amp; props.href === '#');</span>
+      }
+    },
+    TABINDEX_NEEDS_BUTTON: {
+      msg: 'You have an anchor with a tabIndex, no `href` and no `role` DOM property. Add `role="button"` or better yet, use a `&lt;button/&gt;`.',
+      test: <span class="fstat-no" title="function not covered" >function test(tagName, props, children) {</span>
+<span class="cstat-no" title="statement not covered" >        if (isHiddenFromAT(props)) <span class="cstat-no" title="statement not covered" >return true;</span></span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        return !(!props.role &amp;&amp; props.tabIndex != null &amp;&amp; !props.href);</span>
+      }
+    }
+  },
+&nbsp;
+  img: {
+    MISSING_ALT: {
+      msg: 'You forgot an `alt` DOM property on an image. Screen-reader users will not know what it is.',
+      test: <span class="fstat-no" title="function not covered" >function test(tagName, props, children) {</span>
+<span class="cstat-no" title="statement not covered" >        if (isHiddenFromAT(props)) <span class="cstat-no" title="statement not covered" >return true;</span></span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        return hasAlt(props);</span>
+      }
+    },
+&nbsp;
+    REDUNDANT_ALT: {
+      // TODO: have some way to set localization strings to match against
+      msg: 'Screen-readers already announce `img` tags as an image, you don\'t need to use the word "image" or "picture" in the description',
+      test: <span class="fstat-no" title="function not covered" >function test(tagName, props, children) {</span>
+<span class="cstat-no" title="statement not covered" >        if (isHiddenFromAT(props) || !hasAlt(props)) <span class="cstat-no" title="statement not covered" >return true;</span></span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        return !(props.alt.match('image') || props.alt.match('picture'));</span>
+      }
+    }
+  }
+};
+&nbsp;
+exports.render = {
+  NO_LABEL: {
+    msg: 'You have an unlabeled element or control. Add `aria-label` or `aria-labelledby` attribute, or put some text in the element.',
+    test: <span class="fstat-no" title="function not covered" >function test(tagName, props, children, failureCB) {</span>
+<span class="cstat-no" title="statement not covered" >      if (isHiddenFromAT(props) || presentationRoles.indexOf(props.role) !== -1) <span class="cstat-no" title="statement not covered" >return;</span></span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      if (!(isInteractive(tagName, props) || tagName == 'a' &amp;&amp; !props.href || props.role)) <span class="cstat-no" title="statement not covered" >return;</span></span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      var failed = !(props['aria-label'] || props['aria-labelledby'] || tagName === 'img' &amp;&amp; props.alt || hasChildTextNode(props, children, failureCB));</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      if (failed) <span class="cstat-no" title="statement not covered" >failureCB();</span></span>
+    }
+  }
+&nbsp;
+};
+&nbsp;</pre></td></tr>
+</table></pre>
+</div>
+<div class="footer">
+    <div class="meta">Generated by <a href="https://github.com/kaizhu256/node-utility2" target="_blank">utility2</a> at Fri Apr 21 2017 18:39:05 GMT+0000 (UTC)</div>
+</div>
+</body>
+</html>
